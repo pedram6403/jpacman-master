@@ -341,27 +341,38 @@ public void stop() {
         return false;
     }
 
-    /**
-     * Counts the pellets remaining on the board.
-     *
-     * @return The amount of pellets remaining on the board.
-     */
-    public int remainingPellets() {
-        Board board = getBoard();
-        int pellets = 0;
-        for (int x = 0; x < board.getWidth(); x++) {
-            for (int y = 0; y < board.getHeight(); y++) {
-                for (Unit unit : board.squareAt(x, y).getOccupants()) {
-                    if (unit instanceof Pellet) {
-                        pellets++;
-                    }
-                }
-            }
-        }
-        assert pellets >= 0;
-        return pellets;
-    }
+    // /**
+    //  * Counts the pellets remaining on the board.
+    //  *
+    //  * @return The amount of pellets remaining on the board.
+    //  */
+    // public int remainingPellets() {
+    //     Board board = getBoard();
+    //     int pellets = 0;
+    //     for (int x = 0; x < board.getWidth(); x++) {
+    //         for (int y = 0; y < board.getHeight(); y++) {
+    //             for (Unit unit : board.squareAt(x, y).getOccupants()) {
+    //                 if (unit instanceof Pellet) {
+    //                     pellets++;
+    //                 }
+    //             }
+    //         }
+    //     }
+    //     assert pellets >= 0;
+    //     return pellets;
+    // }
 
+    /**
+ * Counts the pellets remaining on the board.
+ *
+ * @return The number of remaining pellets.
+ */
+    public int remainingPellets() {
+        return (int) getBoard().getSquares().stream()
+            .flatMap(square -> square.getOccupants().stream())
+            .filter(unit -> unit instanceof Pellet)
+            .count();
+    }
     /**
      * A task that moves an NPC and reschedules itself after it finished.
      *
