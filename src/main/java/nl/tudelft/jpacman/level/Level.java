@@ -292,18 +292,35 @@ public void stop() {
         return inProgress;
     }
 
+    // /**
+    //  * Updates the observers about the state of this level.
+    //  */
+    // private void updateObservers() {
+    //     if (!isAnyPlayerAlive()) {
+    //         for (LevelObserver observer : observers) {
+    //             observer.levelLost();
+    //         }
+    //     }
+    //     if (remainingPellets() == 0) {
+    //         for (LevelObserver observer : observers) {
+    //             observer.levelWon();
+    //         }
+    //     }
+    // }
     /**
-     * Updates the observers about the state of this level.
-     */
+ * Updates the observers about the state of this level.
+ */
     private void updateObservers() {
-        if (!isAnyPlayerAlive()) {
-            for (LevelObserver observer : observers) {
+        boolean gameLost = !isAnyPlayerAlive();
+        boolean gameWon = remainingPellets() == 0;
+
+        for (LevelObserver observer : observers) {
+            if (gameLost) {
                 observer.levelLost();
-            }
-        }
-        if (remainingPellets() == 0) {
-            for (LevelObserver observer : observers) {
+                return; // No need to check further if game is lost
+            } else if (gameWon) {
                 observer.levelWon();
+                return; // No need to check further if game is won
             }
         }
     }
