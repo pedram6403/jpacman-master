@@ -1,0 +1,134 @@
+plugins {
+    id 'application'
+    id 'java'
+    id 'jacoco'
+    id 'checkstyle'
+    id 'pmd'
+    id 'com.github.spotbugs' version '5.0.13'
+    id 'org.sonarqube' version '3.1.1'
+}
+ext {
+    guavaVersion = '27.1-jre'
+    spotbugsAnnotationsVersion = '4.7.3'
+    junitVersion = '5.9.3'
+    mockitoVersion = '4.8.0'
+    assertjVersion = '3.23.1'
+    jacocoVersion = '0.8.8'
+}
+
+sourceSets {
+    defaultTest {
+        java {
+            compileClasspath += main.output + test.output
+            runtimeClasspath += main.output + test.output
+            srcDir file('src/default-test/java')
+        }
+        resources.srcDir file('src/default-test/resources')
+    }
+}
+
+configurations {
+    defaultTestCompile.extendsFrom testCompile
+    defaultTestImplementation.extendsFrom testImplementation
+    defaultTestRuntime.extendsFrom testRuntime
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "com.google.guava:guava:$guavaVersion"
+
+
+    //compileOnly "com.github.spotbugs:spotbugs-annotations:$spotbugsAnnotationsVersion"
+    compileOnly "com.github.spotbugs:spotbugs-annotations:4.7.3" // Ensure the correct version is used
+    testImplementation "org.junit.jupiter:junit-jupiter:$junitVersion"
+    testImplementation "org.mockito:mockito-core:$mockitoVersion"
+    testImplementation "org.assertj:assertj-core:$assertjVersion"
+}
+
+task defaultTest(type: Test) {
+    testClassesDirs = sourceSets.defaultTest.output.classesDirs
+    classpath = sourceSets.defaultTest.runtimeClasspath
+}
+test.dependsOn defaultTest
+
+test {
+    useJUnitPlatform()
+    finalizedBy jacocoTestReport
+}
+
+defaultTest {
+    useJUnitPlatform()
+}
+
+jacoco {
+    toolVersion = "0.8.10" // Use the latest stable version
+}
+
+jacocoTestReport {
+//    executionData tasks.withType(Test)
+    dependsOn test // Ensure the test task runs first
+    reports {
+        csv.required.set(true) // Updated for Gradle 8.9 csv.enabled true
+        xml.required.set(true) // Updated for Gradle 8.9 xml.enabled true
+        html.outputLocation.set(file("$buildDir/reports/jacoco"))
+    }
+}
+
+//checkstyle {
+//    configFile file("checkstyle.xml")
+//    ignoreFailures = true
+//}
+
+checkstyle {
+    configFile = file("${project.rootDir}/checkstyle.xml")
+    toolVersion = "10.12.1" // Ensure a compatible version
+    ignoreFailures = false  // Optional: Temporarily bypass failures
+}
+
+pmd {
+    ruleSetFiles "pmd-rules.xml"
+    ruleSets = []
+}
+
+spotbugs {
+    ignoreFailures = true // Prevent build failure
+    effort = 'max'        // Control analysis depth
+    reportLevel = 'low'   // Lower the severity threshold
+}
+
+//tasks.withType(com.github.spotbugs.SpotBugsTask).configureEach {
+//    reports {
+//        html.required.set(true) //xml.enabled = false
+//        xml.required.set(false) //html.enabled = true
+//    }
+//}
+tasks.withType(org.gradle.api.Task).configureEach {
+    if (name.contains("spotbugs")) {
+        reports {
+            html.required.set(true)  // Enable HTML report
+            xml.required.set(false) // Disable XML report
+        }
+    }
+}
+
+
+
+task staticAnalysis(type: GradleBuild) {
+    tasks = [
+        'clean',
+        'checkstyleMain',
+        'checkstyleTest',
+        'checkstyleDefaultTest',
+        'pmdMain',
+        'pmdTest',
+        'pmdDefaultTest',
+        'spotbugsMain',
+        'spotbugsTest',
+        'spotbugsDefaultTest',
+    ]
+}
+
+mainClassName = 'nl.tudelft.jpacman.Launcher'

@@ -1,0 +1,553 @@
+------
+CloneClass #1: 2 Members
+ Code: hd.children.put(newInteger(f(leaf.label[leaf.labelBegin],leaf.labelBegin+2-leaf.labelJ)),leaf);
+       hd.parent=begin;
+       v.parent=hd;
+       leaf.parent=hd;
+       returnhd;
+       break;
+       Vertexleaf=newVertex();
+       leaf.label=firstSuf;
+       leaf.labelJ=in;
+       leaf.labelLength=overschotLength;
+ Loc.: <DuplicationSuspect.java>97/98/99/100/101/103/107/108/109/110
+       <DuplicationSuspect.java>151/152/153/154/155/157/160/161/162/163
+------
+CloneClass #2: 2 Members
+ Code: hdlabelLength++;
+       else{if(i>0){Vertexhd=newVertex();
+       hd.label=v.label;
+       hd.labelJ=v.labelJ;
+       hd.labelBegin=v.labelBegin;
+       hd.labelLength=hdlabelLength;
+       hd.plen=begin.plen+hdlabelLength;
+       begin.children.remove(newInteger(f(v.label[v.labelBegin],v.labelBegin+2-v.labelJ)));
+ Loc.: <DuplicationSuspect.java>75/77/78/79/80/81/82/83/84/85
+       <DuplicationSuspect.java>129/131/132/133/134/135/136/137/138/139
+------
+CloneClass #3: 2 Members
+ Code: if(f(v.label[v.labelBegin+i],i+v.labelBegin+2-v.labelJ)==overschot[overschotBegin+i]){hdlabelLength++;
+       else{if(i>0){Vertexhd=newVertex();
+       hd.label=v.label;
+       hd.labelJ=v.labelJ;
+       hd.labelBegin=v.labelBegin;
+       hd.labelLength=hdlabelLength;
+       hd.plen=begin.plen+hdlabelLength;
+ Loc.: <DuplicationSuspect.java>74/75/77/78/79/80/81/82/83/84
+       <DuplicationSuspect.java>128/129/131/132/133/134/135/136/137/138
+------
+CloneClass #4: 2 Members
+ Code: else{if(i>0){Vertexhd=newVertex();
+       hd.label=v.label;
+       hd.labelJ=v.labelJ;
+       hd.labelBegin=v.labelBegin;
+       hd.labelLength=hdlabelLength;
+       hd.plen=begin.plen+hdlabelLength;
+       begin.children.remove(newInteger(f(v.label[v.labelBegin],v.labelBegin+2-v.labelJ)));
+       v.labelBegin+=hdlabelLength;
+ Loc.: <DuplicationSuspect.java>77/78/79/80/81/82/83/84/85/86
+       <DuplicationSuspect.java>131/132/133/134/135/136/137/138/139/140
+------
+CloneClass #5: 2 Members
+ Code: returnscanrec(v,overschot,overschotLength,overschotBegin);
+       if(f(v.label[v.labelBegin+i],i+v.labelBegin+2-v.labelJ)==overschot[overschotBegin+i]){hdlabelLength++;
+       else{if(i>0){Vertexhd=newVertex();
+       hd.label=v.label;
+       hd.labelJ=v.labelJ;
+       hd.labelBegin=v.labelBegin;
+       hd.labelLength=hdlabelLength;
+ Loc.: <DuplicationSuspect.java>71/74/75/77/78/79/80/81/82/83
+       <DuplicationSuspect.java>125/128/129/131/132/133/134/135/136/137
+------
+CloneClass #6: 3 Members
+ Code: overschotLength-=hdlabelLength;
+       returnscanrec(v,overschot,overschotLength,overschotBegin);
+       if(f(v.label[v.labelBegin+i],i+v.labelBegin+2-v.labelJ)==overschot[overschotBegin+i]){hdlabelLength++;
+       else{if(i>0){Vertexhd=newVertex();
+       hd.label=v.label;
+       hd.labelJ=v.labelJ;
+       hd.labelBegin=v.labelBegin;
+ Loc.: <DuplicationSuspect.java>70/71/74/75/77/78/79/80/81/82
+       <DuplicationSuspect.java>124/125/128/129/131/132/133/134/135/136
+       <DuplicationSuspect.java>301/302/305/306/308/309/310/311/312/313
+------
+CloneClass #7: 3 Members
+ Code: overschotBegin+=hdlabelLength;
+       overschotLength-=hdlabelLength;
+       returnscanrec(v,overschot,overschotLength,overschotBegin);
+       if(f(v.label[v.labelBegin+i],i+v.labelBegin+2-v.labelJ)==overschot[overschotBegin+i]){hdlabelLength++;
+       else{if(i>0){Vertexhd=newVertex();
+       hd.label=v.label;
+       hd.labelJ=v.labelJ;
+ Loc.: <DuplicationSuspect.java>69/70/71/74/75/77/78/79/80/81
+       <DuplicationSuspect.java>123/124/125/128/129/131/132/133/134/135
+       <DuplicationSuspect.java>300/301/302/305/306/308/309/310/311/312
+------
+CloneClass #8: 2 Members
+ Code: hd.children.put(newInteger(f(v.label[v.labelBegin],v.labelBegin+2-v.labelJ)),v);
+       hd.children.put(newInteger(f(leaf.label[leaf.labelBegin],leaf.labelBegin+2-leaf.labelJ)),leaf);
+       hd.parent=begin;
+       v.parent=hd;
+       leaf.parent=hd;
+       returnhd;
+       break;
+       Vertexleaf=newVertex();
+       leaf.label=firstSuf;
+       leaf.labelJ=in;
+ Loc.: <DuplicationSuspect.java>96/97/98/99/100/101/103/107/108/109
+       <DuplicationSuspect.java>150/151/152/153/154/155/157/160/161/162
+------
+CloneClass #9: 3 Members
+ Code: if(i==v.labelLength){overschotBegin+=hdlabelLength;
+       overschotLength-=hdlabelLength;
+       returnscanrec(v,overschot,overschotLength,overschotBegin);
+       if(f(v.label[v.labelBegin+i],i+v.labelBegin+2-v.labelJ)==overschot[overschotBegin+i]){hdlabelLength++;
+       else{if(i>0){Vertexhd=newVertex();
+       hd.label=v.label;
+ Loc.: <DuplicationSuspect.java>68/69/70/71/74/75/77/78/79/80
+       <DuplicationSuspect.java>122/123/124/125/128/129/131/132/133/134
+       <DuplicationSuspect.java>299/300/301/302/305/306/308/309/310/311
+------
+CloneClass #10: 2 Members
+ Code: if(i>0){Vertexhd=newVertex();
+       hd.label=v.label;
+       hd.labelJ=v.labelJ;
+       hd.labelBegin=v.labelBegin;
+       hd.labelLength=hdlabelLength;
+       hd.plen=begin.plen+hdlabelLength;
+       begin.children.remove(newInteger(f(v.label[v.labelBegin],v.labelBegin+2-v.labelJ)));
+       v.labelBegin+=hdlabelLength;
+       v.labelLength-=hdlabelLength;
+ Loc.: <DuplicationSuspect.java>78/79/80/81/82/83/84/85/86/87
+       <DuplicationSuspect.java>132/133/134/135/136/137/138/139/140/141
+------
+CloneClass #11: 2 Members
+ Code: break;
+       Vertexleaf=newVertex();
+       leaf.label=firstSuf;
+       leaf.labelJ=in;
+       leaf.labelLength=overschotLength;
+       leaf.labelBegin=firstSuf.length-overschotLength;
+       leaf.plen=begin.plen+leaf.labelLength;
+       begin.children.put(newInteger(f(leaf.label[leaf.labelBegin],leaf.labelBegin+2-leaf.labelJ)),leaf);
+       leaf.parent=begin;
+       returnbegin;
+ Loc.: <DuplicationSuspect.java>103/107/108/109/110/111/112/113/114/115
+       <DuplicationSuspect.java>277/284/285/286/287/288/289/290/291/292
+------
+CloneClass #12: 2 Members
+ Code: Vertexhd=newVertex();
+       hd.label=v.label;
+       hd.labelJ=v.labelJ;
+       hd.labelBegin=v.labelBegin;
+       hd.labelLength=hdlabelLength;
+       hd.plen=begin.plen+hdlabelLength;
+       begin.children.remove(newInteger(f(v.label[v.labelBegin],v.labelBegin+2-v.labelJ)));
+       v.labelBegin+=hdlabelLength;
+       v.labelLength-=hdlabelLength;
+       v.plen=hd.plen+v.labelLength;
+ Loc.: <DuplicationSuspect.java>79/80/81/82/83/84/85/86/87/88
+       <DuplicationSuspect.java>133/134/135/136/137/138/139/140/141/142
+------
+CloneClass #13: 2 Members
+ Code: for(inti=shortie;
+       i<overschotLength;
+       i++){if(i==v.labelLength){overschotBegin+=hdlabelLength;
+       overschotLength-=hdlabelLength;
+       returnscanrec(v,overschot,overschotLength,overschotBegin);
+       if(f(v.label[v.labelBegin+i],i+v.labelBegin+2-v.labelJ)==overschot[overschotBegin+i]){hdlabelLength++;
+       else{if(i>0){Vertexhd=newVertex();
+ Loc.: <DuplicationSuspect.java>121/122/123/124/125/128/129/131/132/133
+       <DuplicationSuspect.java>298/299/300/301/302/305/306/308/309/310
+------
+CloneClass #14: 2 Members
+ Code: hd.labelBegin=v.labelBegin;
+       hd.labelLength=hdlabelLength;
+       hd.plen=begin.plen+hdlabelLength;
+       begin.children.remove(newInteger(f(v.label[v.labelBegin],v.labelBegin+2-v.labelJ)));
+       v.labelBegin+=hdlabelLength;
+       v.labelLength-=hdlabelLength;
+       v.plen=hd.plen+v.labelLength;
+       Vertexleaf=newVertex();
+       leaf.label=firstSuf;
+       leaf.labelJ=in;
+ Loc.: <DuplicationSuspect.java>82/83/84/85/86/87/88/89/90/91
+       <DuplicationSuspect.java>136/137/138/139/140/141/142/143/144/145
+------
+CloneClass #15: 2 Members
+ Code: hd.label=v.label;
+       hd.labelJ=v.labelJ;
+       hd.labelBegin=v.labelBegin;
+       hd.labelLength=hdlabelLength;
+       hd.plen=begin.plen+hdlabelLength;
+       begin.children.remove(newInteger(f(v.label[v.labelBegin],v.labelBegin+2-v.labelJ)));
+       v.labelBegin+=hdlabelLength;
+       v.labelLength-=hdlabelLength;
+       v.plen=hd.plen+v.labelLength;
+       Vertexleaf=newVertex();
+ Loc.: <DuplicationSuspect.java>80/81/82/83/84/85/86/87/88/89
+       <DuplicationSuspect.java>134/135/136/137/138/139/140/141/142/143
+------
+CloneClass #16: 2 Members
+ Code: inthdlabelLength=shortie;
+       for(inti=shortie;
+       i<overschotLength;
+       i++){if(i==v.labelLength){overschotBegin+=hdlabelLength;
+       overschotLength-=hdlabelLength;
+       returnscanrec(v,overschot,overschotLength,overschotBegin);
+       if(f(v.label[v.labelBegin+i],i+v.labelBegin+2-v.labelJ)==overschot[overschotBegin+i]){hdlabelLength++;
+       else{if(i>0){;
+ Loc.: <DuplicationSuspect.java>120/121/122/123/124/125/128/129/131/132
+       <DuplicationSuspect.java>297/298/299/300/301/302/305/306/308/309
+------
+CloneClass #17: 2 Members
+ Code: hd.labelJ=v.labelJ;
+       hd.labelBegin=v.labelBegin;
+       hd.labelLength=hdlabelLength;
+       hd.plen=begin.plen+hdlabelLength;
+       begin.children.remove(newInteger(f(v.label[v.labelBegin],v.labelBegin+2-v.labelJ)));
+       v.labelBegin+=hdlabelLength;
+       v.labelLength-=hdlabelLength;
+       v.plen=hd.plen+v.labelLength;
+       Vertexleaf=newVertex();
+       leaf.label=firstSuf;
+ Loc.: <DuplicationSuspect.java>81/82/83/84/85/86/87/88/89/90
+       <DuplicationSuspect.java>135/136/137/138/139/140/141/142/143/144
+------
+CloneClass #18: 2 Members
+ Code: leaf.parent=begin;
+       returnbegin;
+       privateVertexscan(Vertexbegin,int[]overschot,intoverschotLength,intoverschotBegin,Vertexv,intshortie){inthdlabelLength=shortie;
+       for(inti=shortie;
+       i<overschotLength;
+       i++){if(i==v.labelLength){overschotBegin+=hdlabelLength;
+       overschotLength-=hdlabelLength;
+       returnscanrec(v,overschot,overschotLength,overschotBegin);
+ Loc.: <DuplicationSuspect.java>114/115/118/119/120/121/122/123/124/125
+       <DuplicationSuspect.java>291/292/295/296/297/298/299/300/301/302
+------
+CloneClass #19: 2 Members
+ Code: hd.labelLength=hdlabelLength;
+       hd.plen=begin.plen+hdlabelLength;
+       begin.children.remove(newInteger(f(v.label[v.labelBegin],v.labelBegin+2-v.labelJ)));
+       v.labelBegin+=hdlabelLength;
+       v.labelLength-=hdlabelLength;
+       v.plen=hd.plen+v.labelLength;
+       Vertexleaf=newVertex();
+       leaf.label=firstSuf;
+       leaf.labelJ=in;
+       leaf.labelLength=overschotLength-hdlabelLength;
+ Loc.: <DuplicationSuspect.java>83/84/85/86/87/88/89/90/91/92
+       <DuplicationSuspect.java>137/138/139/140/141/142/143/144/145/146
+------
+CloneClass #20: 2 Members
+ Code: Vertexleaf=newVertex();
+       leaf.label=firstSuf;
+       leaf.labelJ=in;
+       leaf.labelLength=overschotLength;
+       leaf.labelBegin=firstSuf.length-overschotLength;
+       leaf.plen=begin.plen+leaf.labelLength;
+       begin.children.put(newInteger(f(leaf.label[leaf.labelBegin],leaf.labelBegin+2-leaf.labelJ)),leaf);
+       leaf.parent=begin;
+       returnbegin;
+       privateVertexscan(Vertexbegin,int[]overschot,;
+ Loc.: <DuplicationSuspect.java>107/108/109/110/111/112/113/114/115/118
+       <DuplicationSuspect.java>284/285/286/287/288/289/290/291/292/295
+------
+CloneClass #21: 2 Members
+ Code: hd.plen=begin.plen+hdlabelLength;
+       begin.children.remove(newInteger(f(v.label[v.labelBegin],v.labelBegin+2-v.labelJ)));
+       v.labelBegin+=hdlabelLength;
+       v.labelLength-=hdlabelLength;
+       v.plen=hd.plen+v.labelLength;
+       Vertexleaf=newVertex();
+       leaf.label=firstSuf;
+       leaf.labelJ=in;
+       leaf.labelLength=overschotLength-hdlabelLength;
+       leaf.labelBegin=firstSuf.length-leaf.labelLength;
+ Loc.: <DuplicationSuspect.java>84/85/86/87/88/89/90/91/92/93
+       <DuplicationSuspect.java>138/139/140/141/142/143/144/145/146/147
+------
+CloneClass #22: 2 Members
+ Code: begin.children.remove(newInteger(f(v.label[v.labelBegin],v.labelBegin+2-v.labelJ)));
+       v.labelBegin+=hdlabelLength;
+       v.labelLength-=hdlabelLength;
+       v.plen=hd.plen+v.labelLength;
+       Vertexleaf=newVertex();
+       leaf.label=firstSuf;
+       leaf.labelJ=in;
+       leaf.labelLength=overschotLength-hdlabelLength;
+       leaf.labelBegin=firstSuf.length-leaf.labelLength;
+       leaf.plen=hd.plen+leaf.labelLength;
+ Loc.: <DuplicationSuspect.java>85/86/87/88/89/90/91/92/93/94
+       <DuplicationSuspect.java>139/140/141/142/143/144/145/146/147/148
+------
+CloneClass #23: 2 Members
+ Code: v.labelBegin+=hdlabelLength;
+       v.labelLength-=hdlabelLength;
+       v.plen=hd.plen+v.labelLength;
+       Vertexleaf=newVertex();
+       leaf.label=firstSuf;
+       leaf.labelJ=in;
+       leaf.labelLength=overschotLength-hdlabelLength;
+       leaf.labelBegin=firstSuf.length-leaf.labelLength;
+       leaf.plen=hd.plen+leaf.labelLength;
+       begin.children.put(newInteger(f(hd.label[hd.labelBegin],hd.labelBegin+2-hd.labelJ)),hd);
+ Loc.: <DuplicationSuspect.java>86/87/88/89/90/91/92/93/94/95
+       <DuplicationSuspect.java>140/141/142/143/144/145/146/147/148/149
+------
+CloneClass #24: 2 Members
+ Code: begin.children.put(newInteger(f(hd.label[hd.labelBegin],hd.labelBegin+2-hd.labelJ)),hd);
+       hd.children.put(newInteger(f(v.label[v.labelBegin],v.labelBegin+2-v.labelJ)),v);
+       hd.children.put(newInteger(f(leaf.label[leaf.labelBegin],leaf.labelBegin+2-leaf.labelJ)),leaf);
+       hd.parent=begin;
+       v.parent=hd;
+       leaf.parent=hd;
+       returnhd;
+       break;
+       Vertexleaf=newVertex();
+       leaf.label=firstSuf;
+ Loc.: <DuplicationSuspect.java>95/96/97/98/99/100/101/103/107/108
+       <DuplicationSuspect.java>149/150/151/152/153/154/155/157/160/161
+------
+CloneClass #25: 2 Members
+ Code: intoverschotLength,intoverschotBegin,Vertexv,intshortie){inthdlabelLength=shortie;
+       for(inti=shortie;
+       i<overschotLength;
+       i++){if(i==v.labelLength){overschotBegin+=hdlabelLength;
+       overschotLength-=hdlabelLength;
+       returnscanrec(v,overschot,overschotLength,overschotBegin);
+       if(f(v.label[v.labelBegin+i],i+v.labelBegin+2-v.labelJ)==overschot[overschotBegin+i]){hdlabelLength++;
+       else{;
+ Loc.: <DuplicationSuspect.java>119/120/121/122/123/124/125/128/129/131
+       <DuplicationSuspect.java>296/297/298/299/300/301/302/305/306/308
+------
+CloneClass #26: 2 Members
+ Code: begin.children.put(newInteger(f(leaf.label[leaf.labelBegin],leaf.labelBegin+2-leaf.labelJ)),leaf);
+       leaf.parent=begin;
+       returnbegin;
+       privateVertexscan(Vertexbegin,int[]overschot,intoverschotLength,intoverschotBegin,Vertexv,intshortie){inthdlabelLength=shortie;
+       for(inti=shortie;
+       i<overschotLength;
+       i++){if(i==v.labelLength){overschotBegin+=hdlabelLength;
+       overschotLength-=hdlabelLength;
+ Loc.: <DuplicationSuspect.java>113/114/115/118/119/120/121/122/123/124
+       <DuplicationSuspect.java>290/291/292/295/296/297/298/299/300/301
+------
+CloneClass #27: 2 Members
+ Code: leaf.plen=hd.plen+leaf.labelLength;
+       begin.children.put(newInteger(f(hd.label[hd.labelBegin],hd.labelBegin+2-hd.labelJ)),hd);
+       hd.children.put(newInteger(f(v.label[v.labelBegin],v.labelBegin+2-v.labelJ)),v);
+       hd.children.put(newInteger(f(leaf.label[leaf.labelBegin],leaf.labelBegin+2-leaf.labelJ)),leaf);
+       hd.parent=begin;
+       v.parent=hd;
+       leaf.parent=hd;
+       returnhd;
+       break;
+       Vertexleaf=newVertex();
+ Loc.: <DuplicationSuspect.java>94/95/96/97/98/99/100/101/103/107
+       <DuplicationSuspect.java>148/149/150/151/152/153/154/155/157/160
+------
+CloneClass #28: 2 Members
+ Code: leaf.label=firstSuf;
+       leaf.labelJ=in;
+       leaf.labelLength=overschotLength;
+       leaf.labelBegin=firstSuf.length-overschotLength;
+       leaf.plen=begin.plen+leaf.labelLength;
+       begin.children.put(newInteger(f(leaf.label[leaf.labelBegin],leaf.labelBegin+2-leaf.labelJ)),leaf);
+       leaf.parent=begin;
+       returnbegin;
+       privateVertexscan(Vertexbegin,int[]overschot,intoverschotLength,intoverschotBegin,Vertexv,intshortie){;
+ Loc.: <DuplicationSuspect.java>108/109/110/111/112/113/114/115/118/119
+       <DuplicationSuspect.java>285/286/287/288/289/290/291/292/295/296
+------
+CloneClass #29: 2 Members
+ Code: leaf.plen=begin.plen+leaf.labelLength;
+       begin.children.put(newInteger(f(leaf.label[leaf.labelBegin],leaf.labelBegin+2-leaf.labelJ)),leaf);
+       leaf.parent=begin;
+       returnbegin;
+       privateVertexscan(Vertexbegin,int[]overschot,intoverschotLength,intoverschotBegin,Vertexv,intshortie){inthdlabelLength=shortie;
+       for(inti=shortie;
+       i<overschotLength;
+       i++){if(i==v.labelLength){overschotBegin+=hdlabelLength;
+ Loc.: <DuplicationSuspect.java>112/113/114/115/118/119/120/121/122/123
+       <DuplicationSuspect.java>289/290/291/292/295/296/297/298/299/300
+------
+CloneClass #30: 2 Members
+ Code: leaf.labelJ=in;
+       leaf.labelLength=overschotLength;
+       leaf.labelBegin=firstSuf.length-overschotLength;
+       leaf.plen=begin.plen+leaf.labelLength;
+       begin.children.put(newInteger(f(leaf.label[leaf.labelBegin],leaf.labelBegin+2-leaf.labelJ)),leaf);
+       leaf.parent=begin;
+       returnbegin;
+       privateVertexscan(Vertexbegin,int[]overschot,intoverschotLength,intoverschotBegin,Vertexv,intshortie){inthdlabelLength=shortie;
+ Loc.: <DuplicationSuspect.java>109/110/111/112/113/114/115/118/119/120
+       <DuplicationSuspect.java>286/287/288/289/290/291/292/295/296/297
+------
+CloneClass #31: 2 Members
+ Code: leaf.labelBegin=firstSuf.length-overschotLength;
+       leaf.plen=begin.plen+leaf.labelLength;
+       begin.children.put(newInteger(f(leaf.label[leaf.labelBegin],leaf.labelBegin+2-leaf.labelJ)),leaf);
+       leaf.parent=begin;
+       returnbegin;
+       privateVertexscan(Vertexbegin,int[]overschot,intoverschotLength,intoverschotBegin,Vertexv,intshortie){inthdlabelLength=shortie;
+       for(inti=shortie;
+       i<overschotLength;
+       i++){if(i==v.labelLength){;
+ Loc.: <DuplicationSuspect.java>111/112/113/114/115/118/119/120/121/122
+       <DuplicationSuspect.java>288/289/290/291/292/295/296/297/298/299
+------
+CloneClass #32: 2 Members
+ Code: returnbegin;
+       privateVertexscan(Vertexbegin,int[]overschot,intoverschotLength,intoverschotBegin,Vertexv,intshortie){inthdlabelLength=shortie;
+       for(inti=shortie;
+       i<overschotLength;
+       i++){if(i==v.labelLength){overschotBegin+=hdlabelLength;
+       overschotLength-=hdlabelLength;
+       returnscanrec(v,overschot,overschotLength,overschotBegin);
+       if(f(v.label[v.labelBegin+i],i+v.labelBegin+2-v.labelJ)==overschot[overschotBegin+i]){;
+ Loc.: <DuplicationSuspect.java>115/118/119/120/121/122/123/124/125/128
+       <DuplicationSuspect.java>292/295/296/297/298/299/300/301/302/305
+------
+CloneClass #33: 3 Members
+ Code: leaf.labelBegin=firstSuf.length-leaf.labelLength;
+       leaf.plen=hd.plen+leaf.labelLength;
+       begin.children.put(newInteger(f(hd.label[hd.labelBegin],hd.labelBegin+2-hd.labelJ)),hd);
+       hd.children.put(newInteger(f(v.label[v.labelBegin],v.labelBegin+2-v.labelJ)),v);
+       hd.children.put(newInteger(f(leaf.label[leaf.labelBegin],leaf.labelBegin+2-leaf.labelJ)),leaf);
+       hd.parent=begin;
+       v.parent=hd;
+       leaf.parent=hd;
+       returnhd;
+       break;
+ Loc.: <DuplicationSuspect.java>93/94/95/96/97/98/99/100/101/103
+       <DuplicationSuspect.java>147/148/149/150/151/152/153/154/155/157
+       <DuplicationSuspect.java>317/318/319/320/321/322/323/324/325/327
+------
+CloneClass #34: 2 Members
+ Code: privateVertexscan(Vertexbegin,int[]overschot,intoverschotLength,intoverschotBegin,Vertexv,intshortie){inthdlabelLength=shortie;
+       for(inti=shortie;
+       i<overschotLength;
+       i++){if(i==v.labelLength){overschotBegin+=hdlabelLength;
+       overschotLength-=hdlabelLength;
+       returnscanrec(v,overschot,overschotLength,overschotBegin);
+       if(f(v.label[v.labelBegin+i],i+v.labelBegin+2-v.labelJ)==overschot[overschotBegin+i]){hdlabelLength++;
+ Loc.: <DuplicationSuspect.java>118/119/120/121/122/123/124/125/128/129
+       <DuplicationSuspect.java>295/296/297/298/299/300/301/302/305/306
+------
+CloneClass #35: 2 Members
+ Code: leaf.labelLength=overschotLength;
+       leaf.labelBegin=firstSuf.length-overschotLength;
+       leaf.plen=begin.plen+leaf.labelLength;
+       begin.children.put(newInteger(f(leaf.label[leaf.labelBegin],leaf.labelBegin+2-leaf.labelJ)),leaf);
+       leaf.parent=begin;
+       returnbegin;
+       privateVertexscan(Vertexbegin,int[]overschot,intoverschotLength,intoverschotBegin,Vertexv,intshortie){inthdlabelLength=shortie;
+       for(inti=shortie;
+       i<overschotLength;
+       i++){;
+ Loc.: <DuplicationSuspect.java>110/111/112/113/114/115/118/119/120/121
+       <DuplicationSuspect.java>287/288/289/290/291/292/295/296/297/298
+------
+CloneClass #36: 2 Members
+ Code: v.labelLength-=hdlabelLength;
+       v.plen=hd.plen+v.labelLength;
+       Vertexleaf=newVertex();
+       leaf.label=firstSuf;
+       leaf.labelJ=in;
+       leaf.labelLength=overschotLength-hdlabelLength;
+       leaf.labelBegin=firstSuf.length-leaf.labelLength;
+       leaf.plen=hd.plen+leaf.labelLength;
+       begin.children.put(newInteger(f(hd.label[hd.labelBegin],hd.labelBegin+2-hd.labelJ)),hd);
+       hd.children.put(newInteger(f(v.label[v.labelBegin],v.labelBegin+2-v.labelJ)),v);
+ Loc.: <DuplicationSuspect.java>87/88/89/90/91/92/93/94/95/96
+       <DuplicationSuspect.java>141/142/143/144/145/146/147/148/149/150
+------
+CloneClass #37: 3 Members
+ Code: leaf.labelLength=overschotLength-hdlabelLength;
+       leaf.labelBegin=firstSuf.length-leaf.labelLength;
+       leaf.plen=hd.plen+leaf.labelLength;
+       begin.children.put(newInteger(f(hd.label[hd.labelBegin],hd.labelBegin+2-hd.labelJ)),hd);
+       hd.children.put(newInteger(f(v.label[v.labelBegin],v.labelBegin+2-v.labelJ)),v);
+       hd.children.put(newInteger(f(leaf.label[leaf.labelBegin],leaf.labelBegin+2-leaf.labelJ)),leaf);
+       hd.parent=begin;
+       v.parent=hd;
+       leaf.parent=hd;
+       returnhd;
+ Loc.: <DuplicationSuspect.java>92/93/94/95/96/97/98/99/100/101
+       <DuplicationSuspect.java>146/147/148/149/150/151/152/153/154/155
+       <DuplicationSuspect.java>316/317/318/319/320/321/322/323/324/325
+------
+CloneClass #38: 4 Members
+ Code: leaf.labelJ=in;
+       leaf.labelLength=overschotLength-hdlabelLength;
+       leaf.labelBegin=firstSuf.length-leaf.labelLength;
+       leaf.plen=hd.plen+leaf.labelLength;
+       begin.children.put(newInteger(f(hd.label[hd.labelBegin],hd.labelBegin+2-hd.labelJ)),hd);
+       hd.children.put(newInteger(f(v.label[v.labelBegin],v.labelBegin+2-v.labelJ)),v);
+       hd.children.put(newInteger(f(leaf.label[leaf.labelBegin],leaf.labelBegin+2-leaf.labelJ)),leaf);
+       hd.parent=begin;
+       v.parent=hd;
+       leaf.parent=hd;
+ Loc.: <DuplicationSuspect.java>91/92/93/94/95/96/97/98/99/100
+       <DuplicationSuspect.java>145/146/147/148/149/150/151/152/153/154
+       <DuplicationSuspect.java>251/252/253/254/255/256/257/258/259/260
+       <DuplicationSuspect.java>315/316/317/318/319/320/321/322/323/324
+------
+CloneClass #39: 4 Members
+ Code: leaf.label=firstSuf;
+       leaf.labelJ=in;
+       leaf.labelLength=overschotLength-hdlabelLength;
+       leaf.labelBegin=firstSuf.length-leaf.labelLength;
+       leaf.plen=hd.plen+leaf.labelLength;
+       begin.children.put(newInteger(f(hd.label[hd.labelBegin],hd.labelBegin+2-hd.labelJ)),hd);
+       hd.children.put(newInteger(f(v.label[v.labelBegin],v.labelBegin+2-v.labelJ)),v);
+       hd.children.put(newInteger(f(leaf.label[leaf.labelBegin],leaf.labelBegin+2-leaf.labelJ)),leaf);
+       hd.parent=begin;
+       v.parent=hd;
+ Loc.: <DuplicationSuspect.java>90/91/92/93/94/95/96/97/98/99
+       <DuplicationSuspect.java>144/145/146/147/148/149/150/151/152/153
+       <DuplicationSuspect.java>250/251/252/253/254/255/256/257/258/259
+       <DuplicationSuspect.java>314/315/316/317/318/319/320/321/322/323
+------
+CloneClass #40: 2 Members
+ Code: Vertexleaf=newVertex();
+       leaf.label=firstSuf;
+       leaf.labelJ=in;
+       leaf.labelLength=overschotLength-hdlabelLength;
+       leaf.labelBegin=firstSuf.length-leaf.labelLength;
+       leaf.plen=hd.plen+leaf.labelLength;
+       begin.children.put(newInteger(f(hd.label[hd.labelBegin],hd.labelBegin+2-hd.labelJ)),hd);
+       hd.children.put(newInteger(f(v.label[v.labelBegin],v.labelBegin+2-v.labelJ)),v);
+       hd.children.put(newInteger(f(leaf.label[leaf.labelBegin],leaf.labelBegin+2-leaf.labelJ)),leaf);
+       hd.parent=begin;
+ Loc.: <DuplicationSuspect.java>89/90/91/92/93/94/95/96/97/98
+       <DuplicationSuspect.java>143/144/145/146/147/148/149/150/151/152
+------
+CloneClass #41: 2 Members
+ Code: v.plen=hd.plen+v.labelLength;
+       Vertexleaf=newVertex();
+       leaf.label=firstSuf;
+       leaf.labelJ=in;
+       leaf.labelLength=overschotLength-hdlabelLength;
+       leaf.labelBegin=firstSuf.length-leaf.labelLength;
+       leaf.plen=hd.plen+leaf.labelLength;
+       begin.children.put(newInteger(f(hd.label[hd.labelBegin],hd.labelBegin+2-hd.labelJ)),hd);
+       hd.children.put(newInteger(f(v.label[v.labelBegin],v.labelBegin+2-v.labelJ)),v);
+       hd.children.put(newInteger(f(leaf.label[leaf.labelBegin],leaf.labelBegin+2-leaf.labelJ)),leaf);
+ Loc.: <DuplicationSuspect.java>88/89/90/91/92/93/94/95/96/97
+       <DuplicationSuspect.java>142/143/144/145/146/147/148/149/150/151
+
+
+
+Processed:         351 lines
+Code:              310 lines
+Empty/Comment:      42 lines
+--------------------------------------------
+Sliding window size:              10 lines
+Equiv-class lower bound:           2 members
+Fragment size lower bound:        50 chars
+Total equivalence classes:       214
+Reported equivalence classes:     41
+Reported Fragments:               91
