@@ -155,37 +155,78 @@ public class CollisionInteractionMap implements CollisionMap {
         return null;
     }
 
+    // /**
+    //  * Returns a list of all classes and interfaces the class inherits.
+    //  *
+    //  * @param clazz
+    //  *            The class to create a list of super classes and interfaces
+    //  *            for.
+    //  * @return A list of all classes and interfaces the class inherits.
+    //  */
+    // @SuppressWarnings("unchecked")
+    // private List<Class<? extends Unit>> getInheritance(
+    //     Class<? extends Unit> clazz) {
+    //     List<Class<? extends Unit>> found = new ArrayList<>();
+    //     found.add(clazz);
+
+    //     int index = 0;
+    //     while (found.size() > index) {
+    //         Class<?> current = found.get(index);
+    //         Class<?> superClass = current.getSuperclass();
+    //         if (superClass != null && Unit.class.isAssignableFrom(superClass)) {
+    //             found.add((Class<? extends Unit>) superClass);
+    //         }
+    //         for (Class<?> classInterface : current.getInterfaces()) {
+    //             if (Unit.class.isAssignableFrom(classInterface)) {
+    //                 found.add((Class<? extends Unit>) classInterface);
+    //             }
+    //         }
+    //         index++;
+    //     }
+
+    //     return found;
+    // }
+
     /**
-     * Returns a list of all classes and interfaces the class inherits.
-     *
-     * @param clazz
-     *            The class to create a list of super classes and interfaces
-     *            for.
-     * @return A list of all classes and interfaces the class inherits.
-     */
-    @SuppressWarnings("unchecked")
-    private List<Class<? extends Unit>> getInheritance(
-        Class<? extends Unit> clazz) {
-        List<Class<? extends Unit>> found = new ArrayList<>();
-        found.add(clazz);
+ * Returns a list of all classes and interfaces the given class inherits.
+ *
+ * @param clazz The class to create a list of superclasses and interfaces for.
+ * @return A list of all inherited classes and interfaces.
+ */
+private List<Class<? extends Unit>> getInheritance(Class<? extends Unit> clazz) {
+    List<Class<? extends Unit>> inheritanceList = new ArrayList<>();
+    inheritanceList.add(clazz);
 
-        int index = 0;
-        while (found.size() > index) {
-            Class<?> current = found.get(index);
-            Class<?> superClass = current.getSuperclass();
-            if (superClass != null && Unit.class.isAssignableFrom(superClass)) {
-                found.add((Class<? extends Unit>) superClass);
-            }
-            for (Class<?> classInterface : current.getInterfaces()) {
-                if (Unit.class.isAssignableFrom(classInterface)) {
-                    found.add((Class<? extends Unit>) classInterface);
-                }
-            }
-            index++;
-        }
+    collectSuperClasses(clazz, inheritanceList);
+    collectInterfaces(clazz, inheritanceList);
 
-        return found;
+    return inheritanceList;
+}
+
+/**
+ * Recursively collects superclasses of the given class.
+ */
+@SuppressWarnings("unchecked")
+private void collectSuperClasses(Class<?> clazz, List<Class<? extends Unit>> list) {
+    Class<?> superClass = clazz.getSuperclass();
+    while (superClass != null && Unit.class.isAssignableFrom(superClass)) {
+        list.add((Class<? extends Unit>) superClass);
+        superClass = superClass.getSuperclass();
     }
+}
+
+/**
+ * Recursively collects interfaces of the given class.
+ */
+@SuppressWarnings("unchecked")
+private void collectInterfaces(Class<?> clazz, List<Class<? extends Unit>> list) {
+    for (Class<?> classInterface : clazz.getInterfaces()) {
+        if (Unit.class.isAssignableFrom(classInterface) && !list.contains(classInterface)) {
+            list.add((Class<? extends Unit>) classInterface);
+            collectInterfaces(classInterface, list);
+        }
+    }
+}
 
     /**
      * Handles the collision between two colliding parties.
