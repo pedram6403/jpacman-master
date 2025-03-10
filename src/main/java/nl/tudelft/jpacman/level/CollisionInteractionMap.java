@@ -77,25 +77,38 @@ public class CollisionInteractionMap implements CollisionMap {
         }
     }
 
-    /**
-     * Adds the collision interaction..
-     *
-     * @param collider
-     *            The collider type.
-     * @param collidee
-     *            The collidee type.
-     * @param handler
-     *            The handler that handles the collision.
-     */
-    private void addHandler(Class<? extends Unit> collider,
-                            Class<? extends Unit> collidee, CollisionHandler<?, ?> handler) {
-        if (!handlers.containsKey(collider)) {
-            handlers.put(collider, new HashMap<>());
-        }
+/**
+ * Adds the collision interaction.
+ *
+ * @param collider The collider type.
+ * @param collidee The collidee type.
+ * @param handler The handler that manages the collision.
+ */
+private void addHandler(Class<? extends Unit> collider,
+                        Class<? extends Unit> collidee, CollisionHandler<?, ?> handler) {
+    handlers.computeIfAbsent(collider, k -> new HashMap<>()).put(collidee, handler);
+}
 
-        Map<Class<? extends Unit>, CollisionHandler<?, ?>> map = handlers.get(collider);
-        map.put(collidee, handler);
-    }
+
+    // /**
+    //  * Adds the collision interaction..
+    //  *
+    //  * @param collider
+    //  *            The collider type.
+    //  * @param collidee
+    //  *            The collidee type.
+    //  * @param handler
+    //  *            The handler that handles the collision.
+    //  */
+    // private void addHandler(Class<? extends Unit> collider,
+    //                         Class<? extends Unit> collidee, CollisionHandler<?, ?> handler) {
+    //     if (!handlers.containsKey(collider)) {
+    //         handlers.put(collider, new HashMap<>());
+    //     }
+
+    //     Map<Class<? extends Unit>, CollisionHandler<?, ?>> map = handlers.get(collider);
+    //     map.put(collidee, handler);
+    // }
 
     // /**
     //  * Handles the collision between two colliding parties, if a suitable
