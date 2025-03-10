@@ -148,7 +148,7 @@ private void addHandler(Class<? extends Unit> collider,
     // }
 
 /**
- * Handles the collision between two colliding parties, if a suitable collision handler exists.
+ * Handles the collision between two colliding parties.
  *
  * @param <C1> The collider type.
  * @param <C2> The collidee type.
