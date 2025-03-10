@@ -97,42 +97,86 @@ public class CollisionInteractionMap implements CollisionMap {
         map.put(collidee, handler);
     }
 
-    /**
-     * Handles the collision between two colliding parties, if a suitable
-     * collision handler is listed.
-     *
-     * @param <C1>
-     *            The collider type.
-     * @param <C2>
-     *            The collidee (unit that was moved into) type.
-     *
-     * @param collider
-     *            The collider.
-     * @param collidee
-     *            The collidee.
-     */
-    @SuppressWarnings("unchecked")
-    @Override
-    public <C1 extends Unit, C2 extends Unit> void collide(C1 collider,
-                                                           C2 collidee) {
-        Class<? extends Unit> colliderKey = getMostSpecificClass(handlers, collider.getClass());
-        if (colliderKey == null) {
-            return;
-        }
+    // /**
+    //  * Handles the collision between two colliding parties, if a suitable
+    //  * collision handler is listed.
+    //  *
+    //  * @param <C1>
+    //  *            The collider type.
+    //  * @param <C2>
+    //  *            The collidee (unit that was moved into) type.
+    //  *
+    //  * @param collider
+    //  *            The collider.
+    //  * @param collidee
+    //  *            The collidee.
+    //  */
+    // @SuppressWarnings("unchecked")
+    // @Override
+    // public <C1 extends Unit, C2 extends Unit> void collide(C1 collider,
+    //                                                        C2 collidee) {
+    //     Class<? extends Unit> colliderKey = getMostSpecificClass(handlers, collider.getClass());
+    //     if (colliderKey == null) {
+    //         return;
+    //     }
 
-        Map<Class<? extends Unit>, CollisionHandler<?, ?>> map = handlers.get(colliderKey);
-        Class<? extends Unit> collideeKey = getMostSpecificClass(map, collidee.getClass());
-        if (collideeKey == null) {
-            return;
-        }
+    //     Map<Class<? extends Unit>, CollisionHandler<?, ?>> map = handlers.get(colliderKey);
+    //     Class<? extends Unit> collideeKey = getMostSpecificClass(map, collidee.getClass());
+    //     if (collideeKey == null) {
+    //         return;
+    //     }
 
-        CollisionHandler<C1, C2> collisionHandler = (CollisionHandler<C1, C2>) map.get(collideeKey);
-        if (collisionHandler == null) {
-            return;
-        }
+    //     CollisionHandler<C1, C2> collisionHandler = (CollisionHandler<C1, C2>) map.get(collideeKey);
+    //     if (collisionHandler == null) {
+    //         return;
+    //     }
 
-        collisionHandler.handleCollision(collider, collidee);
+    //     collisionHandler.handleCollision(collider, collidee);
+    // }
+
+/**
+ * Handles the collision between two colliding parties, if a suitable collision handler exists.
+ *
+ * @param <C1> The collider type.
+ * @param <C2> The collidee type.
+ * @param collider The collider.
+ * @param collidee The collidee.
+ */
+// @SuppressWarnings("unchecked")
+@Override
+public <C1 extends Unit, C2 extends Unit> void collide(C1 collider, C2 collidee) {
+    CollisionHandler<C1, C2> handler = getHandler(collider, collidee);
+    if (handler != null) {
+        handler.handleCollision(collider, collidee);
     }
+}
+
+/**
+ * Retrieves the appropriate collision handler if available.
+ *
+ * @param <C1> The collider type.
+ * @param <C2> The collidee type.
+ * @param collider The collider.
+ * @param collidee The collidee.
+ * @return The collision handler if found, otherwise null.
+ */
+@SuppressWarnings("unchecked")
+private <C1 extends Unit, C2 extends Unit> CollisionHandler<C1, C2> getHandler(C1 collider, C2 collidee) {
+    Class<? extends Unit> colliderKey = getMostSpecificClass(handlers, collider.getClass());
+    if (colliderKey == null) {
+        return null;
+    }
+
+    Map<Class<? extends Unit>, CollisionHandler<?, ?>> map = handlers.get(colliderKey);
+    Class<? extends Unit> collideeKey = getMostSpecificClass(map, collidee.getClass());
+    if (collideeKey == null) {
+        return null;
+    }
+
+    return (CollisionHandler<C1, C2>) map.get(collideeKey);
+}
+
+
 
     /**
      * Figures out the most specific class that is listed in the map. I.e. if A
