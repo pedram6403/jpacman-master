@@ -176,28 +176,40 @@ private <C1 extends Unit, C2 extends Unit> CollisionHandler<C1, C2> getHandler(C
     return (CollisionHandler<C1, C2>) map.get(collideeKey);
 }
 
+/**
+ * Finds the most specific class listed in the map.
+ *
+ * @param map The map containing class keys.
+ * @param key The class to find the most specific match for.
+ * @return The most specific matching class from the map, or null if not found.
+ */
+private Class<? extends Unit> getMostSpecificClass(Map<Class<? extends Unit>, ?> map, Class<? extends Unit> key) {
+    return getInheritance(key).stream()
+        .filter(map::containsKey)
+        .findFirst()
+        .orElse(null);
+}
 
-
-    /**
-     * Figures out the most specific class that is listed in the map. I.e. if A
-     * extends B and B is listed while requesting A, then B will be returned.
-     *
-     * @param map
-     *            The map with the key collection to find a matching class in.
-     * @param key
-     *            The class to search the most suitable key for.
-     * @return The most specific class from the key collection.
-     */
-    private Class<? extends Unit> getMostSpecificClass(
-        Map<Class<? extends Unit>, ?> map, Class<? extends Unit> key) {
-        List<Class<? extends Unit>> collideeInheritance = getInheritance(key);
-        for (Class<? extends Unit> pointer : collideeInheritance) {
-            if (map.containsKey(pointer)) {
-                return pointer;
-            }
-        }
-        return null;
-    }
+    // /**
+    //  * Figures out the most specific class that is listed in the map. I.e. if A
+    //  * extends B and B is listed while requesting A, then B will be returned.
+    //  *
+    //  * @param map
+    //  *            The map with the key collection to find a matching class in.
+    //  * @param key
+    //  *            The class to search the most suitable key for.
+    //  * @return The most specific class from the key collection.
+    //  */
+    // private Class<? extends Unit> getMostSpecificClass(
+    //     Map<Class<? extends Unit>, ?> map, Class<? extends Unit> key) {
+    //     List<Class<? extends Unit>> collideeInheritance = getInheritance(key);
+    //     for (Class<? extends Unit> pointer : collideeInheritance) {
+    //         if (map.containsKey(pointer)) {
+    //             return pointer;
+    //         }
+    //     }
+    //     return null;
+    // }
 
     // /**
     //  * Returns a list of all classes and interfaces the class inherits.
