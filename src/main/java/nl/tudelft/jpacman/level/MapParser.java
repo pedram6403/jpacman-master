@@ -61,31 +61,67 @@ public class MapParser {
      *            representing the square at position x,y.
      * @return The level as represented by this text.
      */
+    // public Level parseMap(char[][] map) {
+    //     int width = map.length;
+    //     int height = map[0].length;
+
+    //     Square[][] grid = new Square[width][height];
+
+    //     List<Ghost> ghosts = new ArrayList<>();
+    //     List<Square> startPositions = new ArrayList<>();
+
+    //     makeGrid(map, width, height, grid, ghosts, startPositions);
+        
+
+    //     Board board = boardCreator.createBoard(grid);
+    //     return levelCreator.createLevel(board, ghosts, startPositions);
+    // }
     public Level parseMap(char[][] map) {
-        int width = map.length;
-        int height = map[0].length;
-
-        Square[][] grid = new Square[width][height];
-
-        List<Ghost> ghosts = new ArrayList<>();
-        List<Square> startPositions = new ArrayList<>();
-
-        makeGrid(map, width, height, grid, ghosts, startPositions);
-
-        Board board = boardCreator.createBoard(grid);
-        return levelCreator.createLevel(board, ghosts, startPositions);
+        MapData mapData = new MapData(map); // Crée une instance de MapData
+        makeGrid(mapData); // Génère le plateau et les entités
+    
+        Board board = boardCreator.createBoard(mapData.grid);
+        return levelCreator.createLevel(board, mapData.ghosts, mapData.startPositions);
     }
 
-    private void makeGrid(char[][] map, int width, int height,
-                      Square[][] grid, List<Ghost> ghosts, List<Square> startPositions) {
-    for (int x = 0; x < width; x++) {
-        for (int y = 0; y < height; y++) {
-            char c = map[x][y];
+/**
+ * Structure contenant les informations du plateau.
+ */
+public static class MapData {
+    final char[][] map;
+    final Square[][] grid;
+    final List<Ghost> ghosts;
+    final List<Square> startPositions;
+
+    public MapData(char[][] map) {
+        this.map = map;
+        this.grid = new Square[map.length][map[0].length];
+        this.ghosts = new ArrayList<>();
+        this.startPositions = new ArrayList<>();
+    }
+}
+
+private void makeGrid(MapData mapData) {
+    for (int x = 0; x < mapData.map.length; x++) {
+        for (int y = 0; y < mapData.map[0].length; y++) {
+            char c = mapData.map[x][y];
             SquareInfo squareInfo = new SquareInfo(x, y, c);
-            addSquare(grid, ghosts, startPositions, squareInfo);
+            addSquare(mapData.grid, mapData.ghosts, mapData.startPositions, squareInfo);
         }
     }
 }
+
+
+//     private void makeGrid(char[][] map, int width, int height,
+//                       Square[][] grid, List<Ghost> ghosts, List<Square> startPositions) {
+//     for (int x = 0; x < width; x++) {
+//         for (int y = 0; y < height; y++) {
+//             char c = map[x][y];
+//             SquareInfo squareInfo = new SquareInfo(x, y, c);
+//             addSquare(grid, ghosts, startPositions, squareInfo);
+//         }
+//     }
+// }
 
     /**
      * Classe contenant les informations d'une case sur la carte.
