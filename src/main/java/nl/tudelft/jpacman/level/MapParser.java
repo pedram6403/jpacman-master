@@ -286,36 +286,90 @@ protected void addSquare(Square[][] grid, List<Ghost> ghosts,
         return parseMap(map);
     }
 
+    
     /**
-     * Check the correctness of the map lines in the text.
-     * @param text Map to be checked
-     * @throws PacmanConfigurationException if map is not OK.
-     */
-    private void checkMapFormat(List<String> text) {
-        if (text == null) {
-            throw new PacmanConfigurationException(
-                "Input text cannot be null.");
-        }
+ * Vérifie la validité du format de la carte.
+ * @param text Liste des lignes de la carte.
+ * @throws PacmanConfigurationException si le format est invalide.
+ */
+private void checkMapFormat(List<String> text) {
+    validateNotNull(text);
+    validateNotEmpty(text);
+    int width = validateLineWidth(text);
+    validateConsistentWidth(text, width);
+}
 
-        if (text.isEmpty()) {
-            throw new PacmanConfigurationException(
-                "Input text must consist of at least 1 row.");
-        }
+/**
+ * Vérifie que la carte n'est pas null.
+ */
+private void validateNotNull(List<String> text) {
+    if (text == null) {
+        throw new PacmanConfigurationException("Input text cannot be null.");
+    }
+}
 
-        int width = text.get(0).length();
+/**
+ * Vérifie que la carte contient au moins une ligne.
+ */
+private void validateNotEmpty(List<String> text) {
+    if (text.isEmpty()) {
+        throw new PacmanConfigurationException("Input text must consist of at least 1 row.");
+    }
+}
 
-        if (width == 0) {
-            throw new PacmanConfigurationException(
-                "Input text lines cannot be empty.");
-        }
+/**
+ * Vérifie que la première ligne n'est pas vide et retourne sa largeur.
+ */
+private int validateLineWidth(List<String> text) {
+    int width = text.get(0).length();
+    if (width == 0) {
+        throw new PacmanConfigurationException("Input text lines cannot be empty.");
+    }
+    return width;
+}
 
-        for (String line : text) {
-            if (line.length() != width) {
-                throw new PacmanConfigurationException(
-                    "Input text lines are not of equal width.");
-            }
+/**
+ * Vérifie que toutes les lignes ont la même largeur.
+ */
+private void validateConsistentWidth(List<String> text, int width) {
+    for (String line : text) {
+        if (line.length() != width) {
+            throw new PacmanConfigurationException("Input text lines are not of equal width.");
         }
     }
+}
+
+
+    // /**
+    //  * Check the correctness of the map lines in the text.
+    //  * @param text Map to be checked
+    //  * @throws PacmanConfigurationException if map is not OK.
+    //  */
+    // private void checkMapFormat(List<String> text) {
+    //     if (text == null) {
+    //         throw new PacmanConfigurationException(
+    //             "Input text cannot be null.");
+    //     }
+
+    //     if (text.isEmpty()) {
+    //         throw new PacmanConfigurationException(
+    //             "Input text must consist of at least 1 row.");
+    //     }
+
+    //     int width = text.get(0).length();
+
+    //     if (width == 0) {
+    //         throw new PacmanConfigurationException(
+    //             "Input text lines cannot be empty.");
+    //     }
+
+    //     for (String line : text) {
+    //         if (line.length() != width) {
+    //             throw new PacmanConfigurationException(
+    //                 "Input text lines are not of equal width.");
+    //         }
+    //     }
+    // }
 
     /**
      * Parses the provided input stream as a character stream and passes it
