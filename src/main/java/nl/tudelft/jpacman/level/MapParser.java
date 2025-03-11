@@ -7,12 +7,12 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import nl.tudelft.jpacman.PacmanConfigurationException;
 import nl.tudelft.jpacman.board.Board;
 import nl.tudelft.jpacman.board.BoardFactory;
 import nl.tudelft.jpacman.board.Square;
 import nl.tudelft.jpacman.npc.Ghost;
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
 /**
  * Creates new {@link Level}s from text representations.
@@ -77,63 +77,136 @@ public class MapParser {
     }
 
     private void makeGrid(char[][] map, int width, int height,
-                          Square[][] grid, List<Ghost> ghosts, List<Square> startPositions) {
-        for (int x = 0; x < width; x++) {
-            for (int y = 0; y < height; y++) {
-                char c = map[x][y];
-                addSquare(grid, ghosts, startPositions, x, y, c);
-            }
+                      Square[][] grid, List<Ghost> ghosts, List<Square> startPositions) {
+    for (int x = 0; x < width; x++) {
+        for (int y = 0; y < height; y++) {
+            char c = map[x][y];
+            SquareInfo squareInfo = new SquareInfo(x, y, c);
+            addSquare(grid, ghosts, startPositions, squareInfo);
         }
     }
+}
 
     /**
-     * Adds a square to the grid based on a given character. These
-     * character come from the map files and describe the type
-     * of square.
-     *
-     * @param grid
-     *            The grid of squares with board[x][y] being the
-     *            square at column x, row y.
-     * @param ghosts
-     *            List of all ghosts that were added to the map.
-     * @param startPositions
-     *            List of all start positions that were added
-     *            to the map.
-     * @param x
-     *            x coordinate of the square.
-     * @param y
-     *            y coordinate of the square.
-     * @param c
-     *            Character describing the square type.
+     * Classe contenant les informations d'une case sur la carte.
      */
-    protected void addSquare(Square[][] grid, List<Ghost> ghosts,
-                             List<Square> startPositions, int x, int y, char c) {
-        switch (c) {
-            case ' ':
-                grid[x][y] = boardCreator.createGround();
-                break;
-            case '#':
-                grid[x][y] = boardCreator.createWall();
-                break;
-            case '.':
-                Square pelletSquare = boardCreator.createGround();
-                grid[x][y] = pelletSquare;
-                levelCreator.createPellet().occupy(pelletSquare);
-                break;
-            case 'G':
-                Square ghostSquare = makeGhostSquare(ghosts, levelCreator.createGhost());
-                grid[x][y] = ghostSquare;
-                break;
-            case 'P':
-                Square playerSquare = boardCreator.createGround();
-                grid[x][y] = playerSquare;
-                startPositions.add(playerSquare);
-                break;
-            default:
-                throw new PacmanConfigurationException("Invalid character at "
-                    + x + "," + y + ": " + c);
+    public static class SquareInfo {
+        final int x;
+        final int y;
+        final char type;
+    
+        public SquareInfo(int x, int y, char type) {
+            this.x = x;
+            this.y = y;
+            this.type = type;
         }
     }
+    private Square createGroundSquare() {
+        return boardCreator.createGround();
+    }
+    
+    private Square createWallSquare() {
+        return boardCreator.createWall();
+    }
+    
+    private Square createPelletSquare() {
+        Square pelletSquare = boardCreator.createGround();
+        levelCreator.createPellet().occupy(pelletSquare);
+        return pelletSquare;
+    }
+    
+    private Square createGhostSquare(List<Ghost> ghosts) {
+        Ghost ghost = levelCreator.createGhost();
+        return makeGhostSquare(ghosts, ghost);
+    }
+    
+    private Square createPlayerSquare(List<Square> startPositions) {
+        Square playerSquare = boardCreator.createGround();
+        startPositions.add(playerSquare);
+        return playerSquare;
+    }
+    
+    /**
+ * Ajoute une case au plateau en fonction du caractère du fichier de carte.
+ *
+ * @param grid            La grille du plateau.
+ * @param ghosts          Liste des fantômes présents sur la carte.
+ * @param startPositions  Liste des positions de départ des joueurs.
+ * @param squareInfo      Informations sur la case actuelle.
+ */
+protected void addSquare(Square[][] grid, List<Ghost> ghosts,
+                         List<Square> startPositions, SquareInfo squareInfo) {
+    switch (squareInfo.type) {
+        case ' ':
+            grid[squareInfo.x][squareInfo.y] = createGroundSquare();
+            break;
+        case '#':
+            grid[squareInfo.x][squareInfo.y] = createWallSquare();
+            break;
+        case '.':
+            grid[squareInfo.x][squareInfo.y] = createPelletSquare();
+            break;
+        case 'G':
+            grid[squareInfo.x][squareInfo.y] = createGhostSquare(ghosts);
+            break;
+        case 'P':
+            grid[squareInfo.x][squareInfo.y] = createPlayerSquare(startPositions);
+            break;
+        default:
+            throw new PacmanConfigurationException("Caractère invalide à la position "
+                + squareInfo.x + "," + squareInfo.y + ": " + squareInfo.type);
+    }
+}
+
+
+    // /**
+    //  * Adds a square to the grid based on a given character. These
+    //  * character come from the map files and describe the type
+    //  * of square.
+    //  *
+    //  * @param grid
+    //  *            The grid of squares with board[x][y] being the
+    //  *            square at column x, row y.
+    //  * @param ghosts
+    //  *            List of all ghosts that were added to the map.
+    //  * @param startPositions
+    //  *            List of all start positions that were added
+    //  *            to the map.
+    //  * @param x
+    //  *            x coordinate of the square.
+    //  * @param y
+    //  *            y coordinate of the square.
+    //  * @param c
+    //  *            Character describing the square type.
+    //  */
+    // protected void addSquare(Square[][] grid, List<Ghost> ghosts,
+    //                          List<Square> startPositions, int x, int y, char c) {
+    //     switch (c) {
+    //         case ' ':
+    //             grid[x][y] = boardCreator.createGround();
+    //             break;
+    //         case '#':
+    //             grid[x][y] = boardCreator.createWall();
+    //             break;
+    //         case '.':
+    //             Square pelletSquare = boardCreator.createGround();
+    //             grid[x][y] = pelletSquare;
+    //             levelCreator.createPellet().occupy(pelletSquare);
+    //             break;
+    //         case 'G':
+    //             Square ghostSquare = makeGhostSquare(ghosts, levelCreator.createGhost());
+    //             grid[x][y] = ghostSquare;
+    //             break;
+    //         case 'P':
+    //             Square playerSquare = boardCreator.createGround();
+    //             grid[x][y] = playerSquare;
+    //             startPositions.add(playerSquare);
+    //             break;
+    //         default:
+    //             throw new PacmanConfigurationException("Invalid character at "
+    //                 + x + "," + y + ": " + c);
+    //     }
+    // }
 
     /**
      * creates a Square with the specified ghost on it
