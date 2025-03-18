@@ -367,12 +367,26 @@ public void stop() {
  *
  * @return The number of remaining pellets.
  */
+    // public int remainingPellets() {
+    //     return (int) getBoard().getSquares().stream()
+    //         .flatMap(square -> square.getOccupants().stream())
+    //         .filter(unit -> unit instanceof Pellet)
+    //         .count();
+    // }
+
+    /**
+     * Compte le nombre de pellets restants sur le plateau.
+     *
+     * @return Le nombre total de pellets restants.
+     */
     public int remainingPellets() {
-        return (int) getBoard().getSquares().stream()
-            .flatMap(square -> square.getOccupants().stream())
-            .filter(unit -> unit instanceof Pellet)
-            .count();
+        return (int) java.util.Arrays.stream(getBoard().getSquares()) // Convertit Square[][] en flux de Square[]
+            .flatMap(java.util.Arrays::stream) // Aplati les lignes pour obtenir un flux de Square
+            .flatMap(square -> square.getOccupants().stream()) // Récupère tous les occupants de chaque case
+            .filter(unit -> unit instanceof Pellet) // Filtre les pellets
+            .count(); // Compte le nombre total de pellets
     }
+
     /**
      * A task that moves an NPC and reschedules itself after it finished.
      *
@@ -433,4 +447,5 @@ public void stop() {
          */
         void levelLost();
     }
+    
 }

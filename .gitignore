@@ -8,7 +8,7 @@
 .gradle
 /build/
 /out/
-
+gradle.properties  # Ajout pour ignorer le fichier gradle.properties
 # Ignore Gradle GUI config
 gradle-app.setting
 
@@ -27,3 +27,4 @@ gradle-app.setting
 .idea/
 *.iml
 /bin
+

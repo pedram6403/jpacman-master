@@ -61,6 +61,17 @@ public class Board {
     }
 
     /**
+     * Retourne toutes les cases du plateau sous forme d'un tableau 2D.
+     *
+     * @return La grille complète des cases du plateau.
+     */
+    public Square[][] getSquares() {
+        return board;
+    }
+
+
+
+    /**
      * Returns the square at the given <code>x,y</code> position.
      *
      * Precondition: The <code>(x, y)</code> coordinates are within the
