@@ -363,18 +363,6 @@ public void stop() {
     // }
 
     /**
- * Counts the pellets remaining on the board.
- *
- * @return The number of remaining pellets.
- */
-    // public int remainingPellets() {
-    //     return (int) getBoard().getSquares().stream()
-    //         .flatMap(square -> square.getOccupants().stream())
-    //         .filter(unit -> unit instanceof Pellet)
-    //         .count();
-    // }
-
-    /**
      * Compte le nombre de pellets restants sur le plateau.
      *
      * @return Le nombre total de pellets restants.

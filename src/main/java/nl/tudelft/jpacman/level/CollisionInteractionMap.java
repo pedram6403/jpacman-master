@@ -284,15 +284,31 @@ private void collectSuperClasses(Class<?> clazz, List<Class<? extends Unit>> lis
     }
 }
 
+// /**
+//  * Recursively collects interfaces of the given class.
+//  */
+// @SuppressWarnings("unchecked")
+// private void collectInterfaces(Class<?> clazz, List<Class<? extends Unit>> list) {
+//     for (Class<?> classInterface : clazz.getInterfaces()) {
+//         if (Unit.class.isAssignableFrom(classInterface) && !list.contains(classInterface)) {
+//             list.add((Class<? extends Unit>) classInterface);
+//             collectInterfaces(classInterface, list);
+//         }
+//     }
+// }
+
 /**
  * Recursively collects interfaces of the given class.
  */
 @SuppressWarnings("unchecked")
 private void collectInterfaces(Class<?> clazz, List<Class<? extends Unit>> list) {
     for (Class<?> classInterface : clazz.getInterfaces()) {
-        if (Unit.class.isAssignableFrom(classInterface) && !list.contains(classInterface)) {
-            list.add((Class<? extends Unit>) classInterface);
-            collectInterfaces(classInterface, list);
+        if (Unit.class.isAssignableFrom(classInterface)) {
+            Class<? extends Unit> unitInterface = (Class<? extends Unit>) classInterface;
+            if (!list.contains(unitInterface)) {
+                list.add(unitInterface);
+                collectInterfaces(unitInterface, list);
+            }
         }
     }
 }
